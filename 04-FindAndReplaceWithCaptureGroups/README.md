@@ -31,133 +31,113 @@ Below is the input file 25 content, with pattern to get correct output:
 # Group 1 can be captured by [0-9]+ (at least one instance of number between 0-9)
 # Now we have two groups and we can refer to those groups by \1 and \2
 # Following pattern returns matching words from the input text:
-sed -r 's/([0-9]+)x([0-9]+)/\1 pix by \2 pix/g' filename
+sed -r 's/([0-9]+)x([0-9]+)/\1 pix by \2 pix/g' regex25.txt
 ```
 
-Below is the input file 19 content, with pattern to get correct output:
+Below is the input file 26 content, with pattern to get correct output:
 
 ```console
 # Input text (* indicate desired output):
-lion *
-tiger *
-leopard
-fox
-kangaroo
-bat
-mouse *
-cuckoo *
-deer *
+John Wallace
+Steve King
+Martin Cook
+Adam Smith
+Irene Peter
+Alice Johnson
 
-# Contains 4-6 chars from a-z, no shorter or longer words
-# Repeater is a{m,n} where m is atleast and n is most of repeat of char
-# Following pattern returns matching words from the input text:
-^[a-z]{4,6}$
+
+# Aim is to swap place of fisrt name and last name and also add , between
+# To separate names: ([a-zA-Z]+)\s([a-zA-Z]+)
+# [] separates character class for english letters and + means one or more occurances and \s is the space between names
+# First group of character class is named as \1 and seconf \2
+# Following pattern does the name swap and adds , between:
+sed -r 's/([a-zA-Z]+)\s([a-zA-Z]+)/\2,\1 /g' regex26.txt 
+```
+
+---
+
+Below is the input file 27 content, with pattern to get correct output:
+
+```console
+# Input text (* indicate desired output):
+7:32
+6:12
+12:23
+1:23
+11:33
+4:21
+
+# Aim is to format given times to following format: 32min past 7
+# To separate groups: ([0-9]{1,2}):([0-9]{2})
+# {1-2} indicate 1-2 occurances of digits and : is the hour and minute separator
+# {2} indicate that minute have always 2 digits
+# First group of character class is named as \1 and seconf \2
+# Following pattern does the formation of time:
+sed -r 's/([0-9]{1,2}):([0-9]{2})/\2 mins past \1 /g' regex27.txt 
+```
+
+---
+
+Below is the input file 28 content, with pattern to get correct output:
+
+```console
+# Input text (* indicate desired output):
+914.582.3013
+873.334.2589
+521.589.3147
+625.235.3698
+895.568.2145
+745.256.3369
+
+# Aim is to format given times to following format: xxx.xxx.3013
+# Only one group is needed and it's the last digits of the string: [0-9]{3}\.[0-9]{3}\.([0-9]{4})
+# First two set of digits are defined but not captured to character class group
+# \. is escaped capture for .
+# Following pattern does the formation of time:
+sed -r 's/[0-9]{3}\.[0-9]{3}\.([0-9]{4})/xxx.xxx.\1 /g' regex28.txt 
 ```
 
 --- 
 
-### Single Ended Curly Braces Repeater (a{m,n}) or ((ab){,n}) 
-
-Below is the input file 20 content, with pattern to get correct output:
+Below is the input file 29 content, with pattern to get correct output:
 
 ```console
 # Input text (* indicate desired output):
-ha
-hahahahaha *
-hahaha
-hahahaha *
-haha
+Jan 5th 1987
+Dec 26th 2010 
+Mar 2nd 1923
+Oct 1st 2008
+Aug 3rd 2009
+Jun 10th 2001
 
-hahahahahaha *
-hahahahahahahaha *
-hahahahahahahahaha *
-
-# Should include 'ha' 4-9 times
-# As we are looking 'ha' we need to point that for the repeater by using () around the word we are looking
-# Repeater is (ha){m,} where m is atleast and most is open
-# Following pattern returns matching words from the input text:
-(ha){4,}
-```
----
-
-Below is the input file 21 content, with pattern to get correct output:
-
-```console
-# Input text (* indicate desired output):
-ha *
-haha *
-hahahahaha
-hahahaha
-hahaha
-hahahahahahaha
-hahahahahaha
-
-# Should include 'ha' 4-9 times
-# As we are looking 'ha' we need to point that for the repeater by using () around the word we are looking
-# Repeater is (ha){,n} where n is the maximum number of match but 
-# Following pattern returns matching words from the input text:
-^(ha){,2}$
-```
----  
-
-### The Plus Repeated (a+)
-
-Below is the input file 22 content, with pattern to get correct output:
-
-```console
-# Input text (* indicate desired output):
-fooaaaabar *
-fooabar *
-foobar
-fooaabar *  
-fooxxxbar
-fooxbar
-
-# Starts with foo, ends with bar and have repetition of letter a in between
-# As a must occur between start and end, we cannot use a*
-# Instead we can use +, which expexts at least one instance of letter
-# Following pattern returns matching words from the input text:
-fooa+bar
+# Aim is to format dates to 5-Jan-87
+# This requires to capture three groups
+# ([a-zA-Z{3}])\s([0-9]{1-2})[a-z]{2}\s[0-9}{2}([0-9]{2})
+# In the goup \3, year is splitted in the way that only last two digits are capture
+# Following pattern does the formation of time:
+sed -r 's/([a-zA-Z]{3})\s([0-9]{1,2})[a-z]{2}\s[0-9]{2}([0-9]{2})/\2-\1-\3/g' regex29.txt 
 ```
 
 --- 
 
-### The Question Mark Binary (a?)
-
-Below is the input file 23 content, with pattern to get correct output:
+Below is the input file 30 content, with pattern to get correct output:
 
 ```console
 # Input text (* indicate desired output):
-https://website *
-http://website *
-httpss://website
-httpx://website
-httpxx://website
+(914).582.3013
+(873).334.2589
+(521).589.3147
+(625).235.3698
+(895).568.2145
+(745).256.3369
 
 
-# Starts with http or https - Starts with http and follows 0-1 s letter
-# Regex symbol ? means 0-1 instance of letter
-# Following pattern returns matching words from the input text:
-https?://
+# Aim is to format dates to 914.582.3013
+# This requires two capture groups
+# As ( is special characted, it needs escape char to be handled
+# \(([0-9]{3})\)(\.[0-9]{3}\.[0-9]{4})
+# Following pattern does the formation of time:
+sed -r 's/\(([0-9]{3})\)(\.[0-9]{3}\.[0-9]{4})/\1\2/g' regex30.txt 
 ```
----
 
-### Making Choices With Pipe (a|b)
-
-Below is the input file 24 content, with pattern to get correct output:
-
-```console
-# Input text (* indicate desired output):
-sapwood
-rosewood
-logwood *
-teakwood
-plywood *
-redwood
-
-# Ends with wood and start with log or ply
-# Choise symbol in regex is | (pipe)
-# Following pattern returns matching words from the input text:
-(log|ply)wood
-```
 ---
