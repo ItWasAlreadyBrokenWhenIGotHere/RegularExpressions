@@ -89,6 +89,8 @@ hoo
 [fcl]oo
 ```
 
+---
+
 Below is the input file 06 content, with pattern to get correct output:
 
 ```console
@@ -148,6 +150,8 @@ coo
 [j-m]oo
 ```
 
+---
+
 Below is the input file 09 content, with pattern to get correct output:
 
 ```console
@@ -165,6 +169,8 @@ coo
 # Following pattern returns matching words from the input text:
 [j-mz]oo
 ```
+
+---
 
 Below is the input file 10 content, with pattern to get correct output:
 
@@ -303,6 +309,8 @@ baz bar foo
 .*bar$
 ```
 
+---
+
 Below is the input file 17 content, with pattern to get correct output:
 
 ```console
@@ -319,3 +327,5 @@ baz bar foo
 # Following pattern returns matching words from the input text:
 ^foo$
 ```
+
+---

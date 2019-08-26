@@ -34,6 +34,10 @@ Below is the input file 25 content, with pattern to get correct output:
 sed -r 's/([0-9]+)x([0-9]+)/\1 pix by \2 pix/g' regex25.txt
 ```
 
+---
+
+###  The Fist name - Last Name Problem
+
 Below is the input file 26 content, with pattern to get correct output:
 
 ```console
@@ -55,6 +59,8 @@ sed -r 's/([a-zA-Z]+)\s([a-zA-Z]+)/\2,\1 /g' regex26.txt
 ```
 
 ---
+
+###  The Time Format Problem
 
 Below is the input file 27 content, with pattern to get correct output:
 
@@ -78,6 +84,8 @@ sed -r 's/([0-9]{1,2}):([0-9]{2})/\2 mins past \1 /g' regex27.txt
 
 ---
 
+###  The Phone Number Problem
+
 Below is the input file 28 content, with pattern to get correct output:
 
 ```console
@@ -99,6 +107,8 @@ sed -r 's/[0-9]{3}\.[0-9]{3}\.([0-9]{4})/xxx.xxx.\1 /g' regex28.txt
 
 --- 
 
+###  The Date Format Problem
+
 Below is the input file 29 content, with pattern to get correct output:
 
 ```console
@@ -119,6 +129,8 @@ sed -r 's/([a-zA-Z]{3})\s([0-9]{1,2})[a-z]{2}\s[0-9]{2}([0-9]{2})/\2-\1-\3/g' re
 ```
 
 --- 
+
+###  The Phone Number Problem
 
 Below is the input file 30 content, with pattern to get correct output:
 

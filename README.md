@@ -1,11 +1,12 @@
 # RegularExpressions
 
 Structure of this Regular Expressions (Regex) repository is divided to following modules
+
 *  01-Foundation
 *  02-Basic Set
 *  03-Extended Set
 *  04-Find and Replace with Capture Groups
-*  Challenges
+*  05-Regex Challenges
 
 Each of these module have it's own sub-directory with README.md
 
